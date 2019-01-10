@@ -3,5 +3,13 @@
     display: flex;
     justify-content: center;
     background:#222831;
-    height:20%;
+    height:5vh;
+
+}
+.title{
+   color:white;
+    align-self: center;
+    font-size: 28px;
+
+
 }
