@@ -1,3 +1,7 @@
+<?php 
+require 'connection.php';
+require 'functions.php';
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,16 +30,20 @@
     <div class="container">
                 <div class="name">Name
                     <select id="name">
-                            <option value="1">1</option>
-                             <option value="2">2</option>
+                           <?php
+                              getOptions("Employees");
+              
+                                ?>
                     
                     
                     </select>
                                     </div>
                  <div class="project">project
-            <select id="name">
-                            <option value="1">1</option>
-                             <option value="2">2</option>
+            <select id="projects">
+                           <?php
+                              getOptions("Projects");
+              
+                                ?>
                     
                     
                     </select>
