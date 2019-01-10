@@ -1,0 +1,7 @@
+.header{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    background:#222831;
+    height:20%;
+}
