@@ -10,6 +10,23 @@
    color:white;
     align-self: center;
     font-size: 28px;
-
-
+}
+.container{
+  
+    position: relative;
+    display:flex;
+    padding-top:100px;
+    border:3px solid red;
+    height:90vh;
+    flex-wrap: wrap;
+    justify-content: space-around
+    
+}
+.container *{
+    border:1px solid black;
+    width:15%;
+    height:90px;
+}
+.dttable{
+    width:100%;
 }
