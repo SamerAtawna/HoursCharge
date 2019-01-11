@@ -1,5 +1,7 @@
 function updateTasks(){
-
+    
+    $("#tsk").html("<i class='fas fa-spinner'></i>Loading...");
+    
     var selectedProject = document.getElementById("projects").value;
     var task = document.getElementById("tsk");
     

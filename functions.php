@@ -36,6 +36,7 @@ else if($option=="Projects"){
 
 if(isset($_POST['project'])){
     if(empty($_POST['project'])){
+            echo "Tasks<br><br>";
         echo "Choose Project";
         return false;
     }

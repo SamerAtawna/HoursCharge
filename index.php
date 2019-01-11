@@ -51,7 +51,7 @@ require 'functions.php';
                     
                     </select>
                 </div>
-                 <div  id=tsk class="task">task
+                 <div  id=tsk class="task">Tasks
          <select id="tasks">
                              <option value="1">1</option>
                              <option value="2">2</option>
@@ -68,11 +68,12 @@ require 'functions.php';
         
         
         </div>
-                 <div class="comments"><i class="far fa-comment"></i>Comments
+                 <div class="comments"><div class="commentHead"><i class="far fa-comment"></i>Comments</div>
                      <textarea id=comment></textarea>
                      </div>
                 <input type=button class="btn btn-primary" value="SAVE">
         <div class="dttable">
+            <div class="dtHeader">  My Reports</div>
         <table class="table" id=tbl>
             <thead>
                 <tr>
@@ -237,7 +238,10 @@ require 'functions.php';
     </div>
     <script>
     $(document).ready(function() {
-    $('#tbl').DataTable();
+    $('#tbl').DataTable({
+          "dom":' <"search"f><"top"l>rt<"bottom"ip><"clear">'
+    });
+  
 } );
     </script>
 </body>
