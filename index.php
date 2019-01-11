@@ -15,6 +15,7 @@ require 'functions.php';
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
   
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
     
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
@@ -30,6 +31,7 @@ require 'functions.php';
     <div class="container">
                 <div class="name">Name
                     <select id="name">
+                           <option value=""></option>
                            <?php
                               getOptions("Employees");
               
@@ -39,7 +41,8 @@ require 'functions.php';
                     </select>
                                     </div>
                  <div class="project">project
-            <select id="projects">
+            <select id="projects" onchange="updateTasks()">
+                <option value=""></option>
                            <?php
                               getOptions("Projects");
               
@@ -48,8 +51,8 @@ require 'functions.php';
                     
                     </select>
                 </div>
-                 <div class="task">task
-         <select id="name">
+                 <div  id=tsk class="task">task
+         <select id="tasks">
                              <option value="1">1</option>
                              <option value="2">2</option>
                     
