@@ -27,10 +27,11 @@ require 'functions.php';
 <div class="header">
     <div class="title">Hours Report</div>
     </div>
-    
+      
     <div class="container">
+      <div class="spinner">Saving...</div>
                 <div class="name">Name
-                    <select id="name">
+                    <select id="name" onchange="getRequests(this.value)">
                            <option value=""></option>
                            <?php
                               getOptions("Employees");
@@ -53,182 +54,47 @@ require 'functions.php';
                 </div>
                  <div  id=tsk class="task">Tasks
          <select id="tasks">
-                             <option value="1">1</option>
-                             <option value="2">2</option>
+                       <option value=""></option>
                     
                     
                     </select>
         
         </div>
                  <div class="date">date
-            <input type=date>
+            <input type=date id="date1">
         </div>
                  <div class="hours">hours
-                     <input type=number min=1 step=0.1>
+                     <input type=number min=1 step=0.1 id="hours">
         
         
         </div>
                  <div class="comments"><div class="commentHead"><i class="far fa-comment"></i>Comments</div>
                      <textarea id=comment></textarea>
                      </div>
-                <input type=button class="btn btn-primary" value="SAVE">
+                <input type=button class="btn btn-primary" value="SAVE" onclick="saveData()">
         <div class="dttable">
-            <div class="dtHeader">  My Reports</div>
-        <table class="table" id=tbl>
-            <thead>
-                <tr>
-            <th>Name</th>
-                <th>Age</th>
-                <th>phone</th>
-                <th>Location</th>
-                </tr>
-            </thead>
-            <tbody>
-            <tr>
-            <td>1</td>
-             <td>2</td>
-             <td>3</td>
-             <td>4</td>
-             
-            </tr>
-             <tr>
-            <td>1</td>
-                 <td>3</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-             <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                     <tr>
-            <td>1</td>
-                 <td>4</td>
-                 <td>1</td>
-                 <td>1</td>
-             
-            </tr>
-                
-            </tbody>
+            <div class="dtHeader">My Reports</div>
+            <div class="filters">
+             <i class="fas fa-filter"></i>   <select id="projectsFilter" onchange="orderProject()">
+                <option value=""></option>
+                           <?php
+                              getOptions("Projects");
+              
+                                ?>
+                    
+                    
+                    </select>
+                <input type=date id="dateFilter" onchange="orderDate()">
             
-            </table>
+            
+            
+            
+            </div>
+    <div id=tbl1>
+     <table class='table' id=tbl>
+         <h2>Employee reports will show here</h2>
+        </table>
+            </div>
         
         </div>
                  
@@ -237,12 +103,13 @@ require 'functions.php';
               
     </div>
     <script>
-    $(document).ready(function() {
-    $('#tbl').DataTable({
-          "dom":' <"search"f><"top"l>rt<"bottom"ip><"clear">'
-    });
-  
-} );
+     
+    /*  var table =    $('#tbl').DataTable({
+          "dom":' <"search"f><"top"l>rt<"bottom"ip><"clear">',
+       searching:false
+    });*/
+        
+
     </script>
 </body>
 </html>
