@@ -70,7 +70,7 @@ if(isset($_POST['emp'])){//Get employee requests
     
        if(empty($_POST['emp'])){
        
-         echo"<p><h2>Employe reports will show here</h2></p>";
+         echo"  <h2 id=ttl><i class='fas fa-exclamation-circle'></i>Employee reports will show here</h2>";
         return false;
     }
     
@@ -195,8 +195,63 @@ $newDate = date("Y-m-d", strtotime($date1));
     }
 
 }
-         
 
+function getMainReport(){
+//Insert data to the main table 
+  
+     require 'connection.php';
+  
+ 
+$sum=0;
+
+  
+
+    
+  $query="select Emp_Name, Project_Name, tasks.Project_ID, Tasks.Task_Name, Tasks.Task_Number, Tasks.Task_ID, Date, Hours, Comments  from main  join Tasks on main.Task_Name = Tasks.Task_Name";
+     $result=$connect->query($query);
+   if($result->num_rows>0){
+       echo "<table id=mainTbl>";
+       echo "<thead>";
+        echo "<tr>";
+            echo "<th>Name</th>";
+            echo "<th>Project Name</th>";
+            echo "<th>Project ID</th>";
+            echo "<th>Task Name</th>";
+         echo "<th>Task Number</th>";
+                echo "<th>Task ID</th>";
+          echo "<th>Date</th>";
+            echo "<th>Hours</th>";
+         
+                  echo "<th>Comments</th>";
+      echo "</thead>";
+       echo "<tbody>    ";
+             while($row = $result->fetch_assoc()) {
+                 echo "<tr>";
+                 echo "<td>".$row["Emp_Name"]."</td>";
+                 echo "<td>".$row["Project_Name"]."</td>";
+                 echo "<td>".$row["Project_ID"]."</td>";
+                echo "<td>".$row["Task_Name"]."</td>";
+                    echo "<td>".$row["Task_Number"]."</td>";
+                 echo "<td>".$row["Task_ID"]."</td>";
+                 echo "<td>".$row["Hours"]."</td>";
+                 echo "<td>".$row["Date"]."</td>";
+              echo "<td>".$row["Comments"]."</td>";
+               echo "</tr>";
+                         $sum=$sum+$row["Hours"];
+   }
+       echo "</tbody>";
+       echo "</table>";
+       echo"<br><input type=button value='Go Back' class='btn btn-primary' onclick='goBack()'>";
+     
+    
+}
+    else{
+        echo"<h2>No reports found</h2>";
+    }
+
+
+         
+}
 
 ?>
 

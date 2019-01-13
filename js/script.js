@@ -24,8 +24,9 @@ function updateTasks(){
 }
 function getRequests(user){
        
-    
+    $(".filters").slideDown();
     var dtTable=document.getElementById("tbl1");
+    var fltr = document.getElementsByClassName("filters");
    $.ajax({
        url:"functions.php",
        dataType:"html",
@@ -34,7 +35,8 @@ function getRequests(user){
        success:function(result){
            dtTable.innerHTML=result;
        }
-       
+
+
        
    })
  
@@ -80,6 +82,22 @@ function orderDate(){
    })
  
 }
+function showReport(){
+   $(".cntr1").slideUp();
+       $(".cntr2").slideDown();
+}
+
+function goBack(){
+   $(".cntr1").slideDown();
+       $(".cntr2").slideUp();
+}
+
+function showSuccess(){
+    $(".saved").css("display","flex");
+ setTimeout(function(){ 
+       $(".saved").css("display","none");
+ }, 3000);
+}
 
 
 function saveData(){ 
@@ -104,7 +122,8 @@ function saveData(){
         data:{'frm':dt},
         success:function(result){
             console.log(result);
-                $(".spinner").hide();
+            $(".spinner").hide();
+            showSuccess();
         },
         error:function(){
             

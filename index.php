@@ -28,8 +28,9 @@ require 'functions.php';
     <div class="title">Hours Report</div>
     </div>
       
-    <div class="container">
+    <div class="container cntr1">
       <div class="spinner">Saving...</div>
+      <div class="saved">Data Saved<i class="fas fa-check"></i></div>
                 <div class="name">Name
                     <select id="name" onchange="getRequests(this.value)">
                            <option value=""></option>
@@ -71,7 +72,7 @@ require 'functions.php';
                  <div class="comments"><div class="commentHead"><i class="far fa-comment"></i>Comments</div>
                      <textarea id=comment></textarea>
                      </div>
-                <input type=button class="btn btn-primary" value="SAVE" onclick="saveData()">
+                <input type=button class="btn btn-primary" value="SAVE" onclick="saveData()"><input type="button" class="btn btn-primary" value="reports" onclick="showReport()">
         <div class="dttable">
             <div class="dtHeader">My Reports</div>
             <div class="filters">
@@ -92,7 +93,7 @@ require 'functions.php';
             </div>
     <div id=tbl1>
      <table class='table' id=tbl>
-         <h2>Employee reports will show here</h2>
+         <h2 id=ttl><i class="fas fa-exclamation-circle"></i>Employee reports will show here</h2>
         </table>
             </div>
         
@@ -102,12 +103,18 @@ require 'functions.php';
         
               
     </div>
+    
+       <div class="container-fluid cntr2">
+           <h2>Main Report</h2>
+           <?php getMainReport(); ?> 
+    </div>
+    
     <script>
      
-    /*  var table =    $('#tbl').DataTable({
+      var table =    $('#mainTbl').DataTable({
           "dom":' <"search"f><"top"l>rt<"bottom"ip><"clear">',
-       searching:false
-    });*/
+ 
+    });
         
 
     </script>
