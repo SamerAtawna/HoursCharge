@@ -1,4 +1,6 @@
 <?php
+
+
 //FUNCTIONS LISTED HERE//
 function getOptions($option){
     require 'connection.php';
@@ -33,6 +35,8 @@ else if($option=="Projects"){
 
 
 //Handling AJAX request//
+
+
 if(isset($_POST['project'])){//Update tasks dropdownlist according to project 
     if(empty($_POST['project'])){
             echo "Tasks<br><br>";
@@ -55,7 +59,9 @@ if(isset($_POST['project'])){//Update tasks dropdownlist according to project
             }
     echo "</select>";
 }
-if(isset($_POST['frm'])){//Insert data to the main table 
+
+//Insert data to the main table 
+if(isset($_POST['frm'])){
   
      require 'connection.php';
     $newDt=$_POST['frm'];
@@ -65,7 +71,9 @@ if(isset($_POST['frm'])){//Insert data to the main table
  $connect->query($query);                  
 }
 
-if(isset($_POST['emp'])){//Get employee requests
+
+//Get reports per employee////
+if(isset($_POST['emp'])){
         require 'connection.php';
     
        if(empty($_POST['emp'])){
@@ -107,8 +115,8 @@ if(isset($_POST['emp'])){//Get employee requests
 
 }
 
-
-if(isset($_POST['orderByProj'])){//Insert data to the main table 
+//Insert data to the main table ////
+if(isset($_POST['orderByProj'])){
   
      require 'connection.php';
     $proj=$_POST['orderByProj'];
@@ -150,8 +158,8 @@ $sum=0;
 }
           
 
-
-if(isset($_POST['odate'])){//Insert data to the main table 
+//Insert data to the main table /////////
+if(isset($_POST['odate'])){
   
      require 'connection.php';
     $date1=$_POST['odate'];
@@ -196,17 +204,13 @@ $newDate = date("Y-m-d", strtotime($date1));
 
 }
 
+
+//Produce main report//////////
 function getMainReport(){
-//Insert data to the main table 
-  
-     require 'connection.php';
-  
- 
+
+    require 'connection.php';
+
 $sum=0;
-
-  
-
-    
   $query="select Emp_Name, Project_Name, tasks.Project_ID, Tasks.Task_Name, Tasks.Task_Number, Tasks.Task_ID, Date, Hours, Comments  from main  join Tasks on main.Task_Name = Tasks.Task_Name";
      $result=$connect->query($query);
    if($result->num_rows>0){
@@ -252,7 +256,7 @@ $sum=0;
 
          
 }
-
+///////////////////////////////////////////////////
 ?>
 
 
